@@ -1,0 +1,88 @@
+updates:
+############################################
+# BBR SDK
+############################################
+- name_pattern: mysql/mysql-((version)).tar.gz
+  cur_version: 5.6.51
+  constraints: '>= 5.6, < 5.7'
+  vers_regexp: '5\.6\.[0-9]+'
+  vers_url: https://endoflife.date/mysql
+  blob_url: https://downloads.mysql.com/archives/get/p/23/file/mysql-((version)).tar.gz
+
+- name_pattern: mysql/mysql-((version)).tar.gz
+  cur_version: 5.7.39
+  constraints: '>= 5.7, < 6'
+  vers_regexp: '5\.7\.[0-9]+'
+  vers_url: https://endoflife.date/mysql
+  blob_url: https://downloads.mysql.com/archives/get/p/23/file/mysql-((version)).tar.gz
+
+- name_pattern: mysql/mysql-((version))-linux-glibc2.17-x86_64-minimal.tar.xz
+  cur_version: 8.0.31
+  constraints: '>= 8.0'
+  vers_regexp: '8\.[0-9]+\.[0-9]+'
+  vers_url: https://endoflife.date/mysql
+  blob_url: https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-((version))-linux-glibc2.17-x86_64-minimal.tar.xz
+
+- name_pattern: postgres/postgresql-((version)).tar.gz
+  cur_version: 9.4.26
+  constraints: '>= 9.4, < 9.5'
+  vers_regexp: '9\.4\.[0-9]+'
+  vers_url: https://endoflife.date/postgresql
+  blob_url: https://ftp.postgresql.org/pub/source/v((version))/postgresql-((version)).tar.gz
+
+- name_pattern: postgres/postgresql-((version)).tar.gz
+  cur_version: 9.6.24
+  constraints: '>= 9.6, < 10'
+  vers_regexp: '9\.6\.[0-9]+'
+  vers_url: https://endoflife.date/postgresql
+  blob_url: https://ftp.postgresql.org/pub/source/v((version))/postgresql-((version)).tar.gz
+
+- name_pattern: postgres/postgresql-((version)).tar.gz
+  cur_version: 10.23
+  constraints: '>= 10, < 11'
+  vers_regexp: '10\.[0-9]+'
+  vers_url: https://endoflife.date/postgresql
+  blob_url: https://ftp.postgresql.org/pub/source/v((version))/postgresql-((version)).tar.gz
+
+- name_pattern: postgres/postgresql-((version)).tar.gz
+  cur_version: 11.18
+  constraints: '>= 11, < 12'
+  vers_regexp: '11\.[0-9]+'
+  vers_url: https://endoflife.date/postgresql
+  blob_url: https://ftp.postgresql.org/pub/source/v((version))/postgresql-((version)).tar.gz
+
+- name_pattern: postgres/postgresql-((version)).tar.gz
+  cur_version: 13.9
+  constraints: '>= 13, < 14'
+  vers_regexp: '13\.[0-9]+'
+  vers_url: https://endoflife.date/postgresql
+  blob_url: https://ftp.postgresql.org/pub/source/v((version))/postgresql-((version)).tar.gz
+
+- name_pattern: libpcre2/pcre2-((version)).tar.gz
+  cur_version: 10.40
+  constraints: '*'
+  vers_regexp: '"pcre2-(?P<version>[0-9]+\.[0-9]+).tar.gz"'
+  vers_url: https://api.github.com/repos/PCRE2Project/pcre2/releases
+  blob_url: https://github.com/PCRE2Project/pcre2/releases/download/pcre2-((version))/pcre2-((version)).tar.gz
+
+- name_pattern: mariadb/mariadb-((version)).tar.gz
+  cur_version: 10.6.10
+  constraints: '>= 10.6, < 10.7'
+  vers_regexp: '10\.6\.[0-9]+'
+  vers_url: https://endoflife.date/mariadb
+  blob_url: https://downloads.mariadb.org/interstitial/mariadb-((version))/source/mariadb-((version)).tar.gz
+
+- name_pattern: openssl/openssl-((version)).tar.gz
+  cur_version: 1.1.1o
+  constraints: '>= 1, < 2'
+  vers_regexp: '\b[0-9]+\.[0-9]+\.[0-9]+[a-z]\b'
+  vers_url: https://www.openssl.org/news/newslog.html
+  blob_url: https://www.openssl.org/source/openssl-((version)).tar.gz
+
+- name_pattern: boost/boost_1_59_0.tar.gz
+  cur_version: 1.59.0
+  constraints: '= 1.59.0'
+  vers_regexp: 'files/boost/(?P<version>\b[0-9]+\.[0-9]+\.[0-9]+\b)'
+  vers_url: https://www.boost.org/users/history/
+  blob_url: https://sourceforge.net/projects/boost/files/boost/1.59.0/boost_1_59_0.tar.gz/download
+
