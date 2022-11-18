@@ -1,6 +1,6 @@
 ## What are the different _Fields_ used for?
 - **name_pattern** | This field must match the blob path from your release. If your blob path includes information about the current version use ``((version))`` as a placeholder in this file
-- **cur_version** | This field is here to not require the version number as part of the blob path, is a bad practice that makes bumping versions dangerous and difficult
+- **cur_version** | This field is here to not [require the version number as part of the blob path, is a bad practice](#why-including-version-number-in-blob-path-is-bad-practice) that makes bumping versions dangerous and difficult
 - **constraints** | Specify a comma-separated list of constraint as in other package managers. This is useful if you want to embed multiple versions of the same dependency as separate blobs.
 - **vers_regexp** | The regular expression that will be used to detect new versions. It will be matched against the content of the webpage specified in `vers_url` field
 - **vers_url**    | The URL to a webpage or unauthenticated API where we can get a plain-text doc containing references to the latest available versions of this dependency
