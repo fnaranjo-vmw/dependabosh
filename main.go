@@ -1,26 +1,18 @@
 package main
 
 import (
-	"io/ioutil"
-	"os"
-	"gopkg.in/yaml.v3"
-
+	"github.com/fejnartal/dependabosh/cli"
 	"github.com/fejnartal/dependabosh/deps"
 	"github.com/fejnartal/dependabosh/logs"
 )
 
 func main() {
-	yfilePath := os.Args[1]
-	yfile, err := ioutil.ReadFile(yfilePath)
+	dependabosh, err := cli.ParseArgs()
+	if err != nil {
+		logs.ErrorLogger.Println(err)
+		cli.PrintDefaults()
+	}
 
-	if err != nil {
-		panic(err)
-	}
-	var dependabosh deps.Dependabosh
-	err = yaml.Unmarshal(yfile, &dependabosh)
-	if err != nil {
-		panic(err)
-	}
 	for _, dep := range dependabosh.Updates {
 		hasNewVersion, version, err := deps.CheckNewVersionAvailable(dep)
 		if err != nil {
