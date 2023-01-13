@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"regexp"
 	"strconv"
+	"strings"
 	"github.com/Masterminds/semver/v3"
 
 	"github.com/fejnartal/dependabosh/logs"
@@ -22,6 +23,25 @@ type Dependency struct {
 	VersURL     string `yaml:"vers_url"`
 	BlobURL     string `yaml:"blob_url"`
 	SrcURL      string `yaml:"src_url"`
+}
+
+func EvalPlaceholders(text string, dep Dependency) (string, error) {
+	evaluatedText := strings.Replace(text, "((version))", dep.CurVersion, -1)
+	return evaluatedText, nil
+}
+
+func CheckNewVersionAvailable(dep Dependency) (hasNewVersion bool, version string, err error) {
+	latestVersion, err := checkLatestVersion(dep)
+
+	if err != nil {
+		return false, "", err
+	}
+
+	if latestVersion == dep.CurVersion {
+		return false, "", nil // No new version available
+	}
+
+	return true, latestVersion, nil
 }
 
 func findAllVersionsWithCaptureGroups(textContainingVersions string, regex *regexp.Regexp) []string {
@@ -47,7 +67,7 @@ func findAllVersionsWithCaptureGroups(textContainingVersions string, regex *rege
 	return allVersions
 }
 
-func CheckLatestVersion(dep Dependency) (string, error) {
+func checkLatestVersion(dep Dependency) (string, error) {
 	vregexp := regexp.MustCompile(dep.VersRegexp)
 	latestVersionsData := fetchLatestVersionsData(dep.VersURL)
 	detectedVersions := findAllVersionsWithCaptureGroups(latestVersionsData, vregexp)

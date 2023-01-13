@@ -22,22 +22,21 @@ func main() {
 		panic(err)
 	}
 	for _, dep := range dependabosh.Updates {
-		logs.InfoLogger.Println("###################################")
-		logs.InfoLogger.Println("Name Pattern: " + dep.NamePattern)
-		logs.InfoLogger.Println("Cur Version: " + dep.CurVersion)
-		logs.InfoLogger.Println("Constraints: " + dep.Constraints)
-		logs.InfoLogger.Println("Version Regex: " + dep.VersRegexp)
-		logs.InfoLogger.Println("Versions URL: " + dep.VersURL)
-		logs.InfoLogger.Println("Blob URL: " + dep.BlobURL)
-		logs.InfoLogger.Println("SRC URL: " + dep.SrcURL)
-		latestVersion, err := deps.CheckLatestVersion(dep)
+		hasNewVersion, version, err := deps.CheckNewVersionAvailable(dep)
 		if err != nil {
 			logs.ErrorLogger.Println(err)
-			continue
-			logs.InfoLogger.Println("###################################")
 		}
-		logs.InfoLogger.Println("Latest Version: " + latestVersion)
-		logs.InfoLogger.Println("###################################")
+
+		actualBlobName, err := deps.EvalPlaceholders(dep.NamePattern, dep)
+		if err != nil {
+			logs.ErrorLogger.Println(err)
+		}
+
+		if hasNewVersion {
+			logs.InfoLogger.Println("Needs bump: " + actualBlobName + ", From: " + dep.CurVersion + ", To: " +  version)
+		} else {
+			logs.InfoLogger.Println("Up-to-date: " + actualBlobName + ", Version: " + dep.CurVersion)
+		}
 	}
 	
 }
