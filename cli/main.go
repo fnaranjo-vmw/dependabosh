@@ -2,8 +2,8 @@ package cli
 
 import (
 	"flag"
-	"io/ioutil"
 	"gopkg.in/yaml.v3"
+	"io/ioutil"
 
 	"github.com/fejnartal/dependabosh/deps"
 )

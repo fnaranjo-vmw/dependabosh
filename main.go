@@ -25,10 +25,10 @@ func main() {
 		}
 
 		if hasNewVersion {
-			logs.InfoLogger.Println("Needs bump: " + actualBlobName + ", From: " + dep.CurVersion + ", To: " +  version)
+			logs.InfoLogger.Println("Needs bump: " + actualBlobName + ", From: " + dep.CurVersion + ", To: " + version)
 		} else {
 			logs.InfoLogger.Println("Up-to-date: " + actualBlobName + ", Version: " + dep.CurVersion)
 		}
 	}
-	
+
 }

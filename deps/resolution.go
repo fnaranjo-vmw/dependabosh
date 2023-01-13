@@ -1,12 +1,12 @@
 package deps
 
 import (
+	"github.com/Masterminds/semver/v3"
 	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
-	"github.com/Masterminds/semver/v3"
 
 	"github.com/fejnartal/dependabosh/logs"
 )
@@ -54,7 +54,6 @@ func findAllVersionsWithCaptureGroups(textContainingVersions string, regex *rege
 			versionCaptureGroup = i
 		}
 	}
-
 
 	allSubmatches := regex.FindAllStringSubmatch(textContainingVersions, -1)
 	allVersions := make([]string, len(allSubmatches))
@@ -119,7 +118,7 @@ func checkLatestVersion(dep Dependency) (string, error) {
 func fetchLatestVersionsData(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
-	   panic(err)
+		panic(err)
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -127,4 +126,3 @@ func fetchLatestVersionsData(url string) string {
 	}
 	return string(body)
 }
-
